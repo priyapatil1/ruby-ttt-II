@@ -8,4 +8,8 @@ class Board
     !@cells.include?("O") && !@cells.include?("X")
   end
 
+  def full?
+    !@cells.include?("-")
+  end
+
 end

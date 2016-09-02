@@ -6,10 +6,14 @@ class Board
     @cells = cells
   end
 
-  def self.create_empty
+  def self.empty_board
     Board.new(["-", "-", "-",
                "-", "-", "-",
                "-", "-", "-"])
+  end
+
+  def self.with_moves(cells)
+    Board.new(cells)
   end
 
   def empty?
@@ -21,7 +25,7 @@ class Board
   end
 
   def win_for?(mark)
-    winning_row(mark) 
+    winning_row(mark) || winning_column(mark)
   end
 
   def equals?(board_object)
@@ -34,8 +38,17 @@ class Board
     (0..9 - 1).each_slice(3).to_a
   end
 
+  def columns
+    rows.transpose
+  end
+
   def winning_row(mark)
-    rows.map {|combo| combo.all? {|position|
+    rows.map {|row| row.all? {|position|
+      @cells[position] == mark}}.include? true
+  end
+
+  def winning_column(mark)
+    columns.map {|column| column.all? {|position|
       @cells[position] == mark}}.include? true
   end
 

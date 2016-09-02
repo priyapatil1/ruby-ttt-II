@@ -1,17 +1,13 @@
 require 'board' 
 describe Board do 
 
-  EMPTY_BOARD = Board.new(["-", "-", "-",
-                           "-", "-", "-",
-                           "-", "-", "-"])
-
-  X_FIRST_COLUMN_WIN = Board.new(["X", "O", "X",
-                                  "X", "O", "O",
-                                  "X", "X", "O"])
+  EMPTY_BOARD = Board.with_moves(["-", "-", "-",
+                                  "-", "-", "-",
+                                  "-", "-", "-"])
 
   context 'empty board' do
     it 'creates empty board' do
-      expect(Board.create_empty.equals?(EMPTY_BOARD)).to be true
+      expect(Board.empty_board.equals?(EMPTY_BOARD)).to be true
     end
 
     it 'determines if a board is empty' do 
@@ -19,16 +15,16 @@ describe Board do
     end
 
     it 'determines if a board is not empty' do
-      full_board = Board.new(["X", "O", "X",
-                              "X", "O", "O",
-                              "O", "X", "X"])
+      full_board = Board.with_moves(["X", "O", "X",
+                                     "X", "O", "O",
+                                     "O", "X", "X"])
       expect(full_board.empty?).to eq false 
     end
 
     it 'determines if a board is full' do 
-      full_board = Board.new(["X", "O", "X",
-                              "X", "O", "O",
-                              "O", "X", "X"])
+      full_board = Board.with_moves(["X", "O", "X",
+                                     "X", "O", "O",
+                                     "O", "X", "X"])
       expect(full_board.full?).to eq true 
     end
 
@@ -39,61 +35,91 @@ describe Board do
 
   context 'row wins' do
     it 'determines a first row win for X' do
-      x_first_row_win = Board.new(["X", "X", "X",
-                                   "X", "O", "O",
-                                   "O", "X", "O"])
+      x_first_row_win = Board.with_moves(["X", "X", "X",
+                                          "X", "O", "O",
+                                          "O", "X", "O"])
       expect(x_first_row_win.win_for?("X")).to eq true 
     end
 
     it 'determines no win for O when X wins' do
-      x_first_row_win = Board.new(["X", "X", "X",
-                                   "X", "O", "O",
-                                   "O", "X", "O"])
+      x_first_row_win = Board.with_moves(["X", "X", "X",
+                                          "X", "O", "O",
+                                          "O", "X", "O"])
       expect(x_first_row_win.win_for?("O")).to eq false 
     end
 
     it 'determines a first row win for O' do
-      o_first_row_win = Board.new(["O", "O", "O",
-                                   "O", "X", "X",
-                                   "X", "O", "X"])
+      o_first_row_win = Board.with_moves(["O", "O", "O",
+                                          "O", "X", "X",
+                                          "X", "O", "X"])
 
       expect(o_first_row_win.win_for?("O")).to eq true 
     end
 
     it 'determines no win for X when O wins' do
-      o_first_row_win = Board.new(["O", "O", "O",
-                                   "O", "X", "X",
-                                   "X", "O", "X"])
+      o_first_row_win = Board.with_moves(["O", "O", "O",
+                                          "O", "X", "X",
+                                          "X", "O", "X"])
 
       expect(o_first_row_win.win_for?("X")).to eq false 
     end
 
     it 'determines a second row win for X' do
-      x_second_row_win = Board.new(["X", "O", "O",
-                                    "X", "X", "X",
-                                    "O", "X", "O"])
+      x_second_row_win = Board.with_moves(["X", "O", "O",
+                                           "X", "X", "X",
+                                           "O", "X", "O"])
       expect(x_second_row_win.win_for?("X")).to eq true 
     end
 
     it 'determines a second row win for O' do
-      o_second_row_win = Board.new(["O", "X", "X",
-                                    "O", "O", "O",
-                                    "X", "O", "X"])
+      o_second_row_win = Board.with_moves(["O", "X", "X",
+                                           "O", "O", "O",
+                                           "X", "O", "X"])
       expect(o_second_row_win.win_for?("O")).to eq true 
     end
 
     it 'determines a third row win for X' do
-      x_third_row_win= Board.new(["X", "O", "O",
-                                   "O", "O", "X",
-                                   "X", "X", "X"])
+      x_third_row_win= Board.with_moves(["X", "O", "O",
+                                         "O", "O", "X",
+                                         "X", "X", "X"])
       expect(x_third_row_win.win_for?("X")).to eq true 
     end
 
     it 'determines a third row win for O' do
-      o_third_row_win = Board.new(["O", "X", "X",
-                                   "X", "X", "O",
-                                   "O", "O", "O"])
+      o_third_row_win = Board.with_moves(["O", "X", "X",
+                                          "X", "X", "O",
+                                          "O", "O", "O"])
       expect(o_third_row_win.win_for?("O")).to eq true 
+    end
+  end
+
+  context 'column wins' do 
+    it 'can determine a first column win for X' do
+      x_first_column_win = Board.with_moves(["X", "O", "X",
+                                             "X", "O", "O",
+                                             "X", "X", "O"])
+      expect(x_first_column_win.win_for?("X")).to eq true 
+    end
+
+    it 'can determine a first column win for O' do
+      o_first_column_win = Board.with_moves(["O", "X", "O",
+                                             "O", "X", "X",
+                                             "O", "O", "X"])
+      expect(o_first_column_win.win_for?("O")).to eq true 
+    end
+
+    it 'can determine a second column win for X' do
+      x_second_column_win = Board.with_moves(["O", "X", "X",
+                                              "-", "X", "O",
+                                              "-", "X", "O"])
+      expect(x_second_column_win.win_for?("X")).to eq true 
+    end
+
+    it 'can determine a third column win for X' do
+      x_third_column_win = Board.with_moves(["O", "X", "X",
+                                             "-", "O", "X",
+                                             "-", "O", "X"])
+      expect(x_third_column_win.win_for?("X")).to eq true 
     end
   end
 

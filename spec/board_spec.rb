@@ -94,32 +94,40 @@ describe Board do
   end
 
   context 'column wins' do 
-    it 'can determine a first column win for X' do
+    it 'determines a first column win for X' do
       x_first_column_win = Board.with_moves(["X", "O", "X",
                                              "X", "O", "O",
                                              "X", "X", "O"])
       expect(x_first_column_win.win_for?("X")).to eq true 
     end
 
-    it 'can determine a first column win for O' do
+
+    it 'determines a first column win for O' do
       o_first_column_win = Board.with_moves(["O", "X", "O",
                                              "O", "X", "X",
                                              "O", "O", "X"])
       expect(o_first_column_win.win_for?("O")).to eq true 
     end
 
-    it 'can determine a second column win for X' do
+    it 'determines a second column win for X' do
       x_second_column_win = Board.with_moves(["O", "X", "X",
                                               "-", "X", "O",
                                               "-", "X", "O"])
       expect(x_second_column_win.win_for?("X")).to eq true 
     end
 
-    it 'can determine a third column win for X' do
+    it 'determines a third column win for X' do
       x_third_column_win = Board.with_moves(["O", "X", "X",
                                              "-", "O", "X",
                                              "-", "O", "X"])
       expect(x_third_column_win.win_for?("X")).to eq true 
+    end
+
+    it 'determines a third column win for O' do
+      o_third_column_win = Board.with_moves(["X", "O", "O",
+                                             "-", "X", "O",
+                                             "-", "X", "O"])
+      expect(o_third_column_win.win_for?("O")).to eq true 
     end
   end
 

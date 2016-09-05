@@ -16,4 +16,8 @@ class Board
     @cells == (1..9).to_a
   end
 
+  def mark(player_mark, position)
+    @cells[position - 1] = player_mark 
+  end
+
 end

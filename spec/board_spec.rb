@@ -15,4 +15,12 @@ describe Board do
       expect(empty_board.empty?).to be true
     end
   end
+
+  context 'marks a board' do
+    it 'marks an empty board' do
+      empty_board = Board.empty_board
+      expect(empty_board.mark("X", 1)).to include "X"
+    end
+  end
+
 end

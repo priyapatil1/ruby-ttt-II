@@ -1,22 +1,28 @@
-class ConsoleDisplay
+require 'game'
+require 'console_display'
 
-  ROW_SEPARATOR = "\n -----------\n"
+class Console
 
-  def initialize(game)
-    @game = game 
+  def initialize(output)
+    @output = output
+    game = Game.new
+    @console_display = ConsoleDisplay.new(game)
   end
 
-  def format_board_display
-    display = ROW_SEPARATOR
-    rows = create_rows
-    display += "| " + rows.flat_map { |row|
-      [row, ROW_SEPARATOR]}.join(" | ")
+  def start
+    show_greeting
+    show_empty_board
   end
 
   private
 
-  def create_rows
-    @game.board.cells.each_slice(3)
+  def show_greeting
+    @output.puts "\nWelcome to Tic Tac Toe!" +
+                 "\nPlease choose a position from 1 - 9\n"
+  end
+
+  def show_empty_board
+    @output.puts @console_display.format_board_display
   end
 
 end

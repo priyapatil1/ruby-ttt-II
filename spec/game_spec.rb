@@ -6,7 +6,7 @@ describe Game do
 
   context 'new game' do
     it 'has an empty board' do
-      game = Game.new(EMPTY_BOARD)
+      game = Game.new
       expect(game.board.empty?).to be true
     end
   end

@@ -11,9 +11,9 @@ describe Console do
       console = Console.new(game)
       expect(console.format_board_display).to eq "\n -----------\n"  +
                                                    "| 1 | 2 | 3 | \n" + 
-                                                   " -----------\n" +
+                                                   " -----------\n " +
                                                    "| 4 | 5 | 6 | \n" +
-                                                   " -----------\n"  +
+                                                   " -----------\n "  +
                                                    "| 7 | 8 | 9 | \n" +
                                                    " -----------\n"  
     end

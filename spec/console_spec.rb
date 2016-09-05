@@ -2,13 +2,13 @@ require 'console'
 require 'game'
 require 'board'
 
-describe Console do 
+describe ConsoleDisplay do
   EMPTY_BOARD = Board.empty_board
   
   context 'display' do 
     it 'displays an empty board' do
       game = Game.new(EMPTY_BOARD)
-      console = Console.new(game)
+      console = ConsoleDisplay.new(game)
       expect(console.format_board_display).to eq "\n -----------\n"  +
                                                    "| 1 | 2 | 3 | \n" + 
                                                    " -----------\n " +

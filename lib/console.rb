@@ -1,4 +1,4 @@
-class Console
+class ConsoleDisplay
 
   ROW_SEPARATOR = "\n -----------\n"
 

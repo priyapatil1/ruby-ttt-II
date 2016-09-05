@@ -22,7 +22,7 @@ class Console
   end
 
   def show_empty_board
-    @output.puts @console_display.format_board_display
+    @output.puts @console_display.format_board
   end
 
 end

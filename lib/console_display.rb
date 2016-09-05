@@ -6,7 +6,7 @@ class ConsoleDisplay
     @game = game 
   end
 
-  def format_board_display
+  def format_board
     display = ROW_SEPARATOR
     rows = create_rows
     display += " | " + rows.flat_map { |row|

@@ -3,7 +3,7 @@ class Player
   attr_reader :mark
 
   def initialize(mark)
-    @mark = "X"
+    @mark = mark 
   end
 
 end

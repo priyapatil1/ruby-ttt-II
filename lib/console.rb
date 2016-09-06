@@ -3,7 +3,8 @@ require 'console_display'
 
 class Console
 
-  def initialize(output)
+  def initialize(input, output)
+    @input = input
     @output = output
     game = Game.new
     @console_display = ConsoleDisplay.new(game)
@@ -15,7 +16,7 @@ class Console
   end
 
   def get_input
-    1
+    @input.gets.chomp.to_i
   end
 
   private

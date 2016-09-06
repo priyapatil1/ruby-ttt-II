@@ -14,6 +14,10 @@ class Console
     show_empty_board
   end
 
+  def get_input
+    1
+  end
+
   private
 
   def show_greeting

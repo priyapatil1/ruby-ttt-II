@@ -22,6 +22,7 @@ describe Console do
         "| 7 | 8 | 9 | \n" +
         " -------------\n"
     end
+
   end
 
   context 'gets a move' do
@@ -44,6 +45,7 @@ describe Console do
       console.get_input
       expect(console.get_input).to eq 5
     end
+
   end
 
 end

@@ -5,6 +5,7 @@ require 'board'
 describe ConsoleDisplay do
   
   context 'display' do 
+
     it 'displays an empty board' do
       game = Game.new
       console = ConsoleDisplay.new(game)
@@ -17,4 +18,5 @@ describe ConsoleDisplay do
                                            " -------------\n"  
     end
   end
+
 end

@@ -3,6 +3,7 @@ require 'board'
 describe Board do 
 
   context 'determines board state' do
+
     it 'has an empty board' do
       board = Board.new([1, 2, 3,
                          4, 5, 6,
@@ -14,9 +15,11 @@ describe Board do
       empty_board = Board.empty_board
       expect(empty_board.empty?).to be true
     end
+
   end
 
   context 'marks an empty board' do
+
     let(:board) {Board.empty_board}
 
     it 'marks a symbol on the board' do
@@ -33,5 +36,7 @@ describe Board do
       board.mark("O", 2)
       expect(board.symbol_at(2)).to eq "O"
     end
+
   end
+
 end

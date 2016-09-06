@@ -28,5 +28,10 @@ describe Board do
       board.mark("X", 1)
       expect(board.symbol_at(1)).to eq "X"
     end
+
+    it 'marks an O at a given position' do
+      board.mark("O", 2)
+      expect(board.symbol_at(2)).to eq "O"
+    end
   end
 end

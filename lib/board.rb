@@ -21,7 +21,7 @@ class Board
   end
 
   def symbol_at(position)
-    "X"
+    @cells[position] 
   end
 
 end

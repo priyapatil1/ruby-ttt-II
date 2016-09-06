@@ -7,8 +7,8 @@ class ConsoleDisplay
   end
 
   def format_board
-    display = ROW_SEPARATOR
     rows = create_rows
+    display = ROW_SEPARATOR
     display += " | " + rows.flat_map { |row|
       [row, ROW_SEPARATOR]}.join(" | ")
   end

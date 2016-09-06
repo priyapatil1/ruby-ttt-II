@@ -3,7 +3,6 @@ require 'game'
 require 'board'
 
 describe ConsoleDisplay do
-  EMPTY_BOARD = Board.empty_board
   
   context 'display' do 
     it 'displays an empty board' do

@@ -6,4 +6,8 @@ class Player
     @mark = mark 
   end
 
+  def current_move(move_given)
+    1
+  end
+
 end

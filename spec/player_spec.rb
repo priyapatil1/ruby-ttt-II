@@ -23,6 +23,11 @@ describe Player do
       expect(player_x.set_current_move(4)).to eq 4
     end
 
+    it 'exposes current move' do
+      player_x = Player.new("X")
+      player_x.set_current_move(2)
+      expect(player_x.current_move).to eq 2
+    end
   end
 
 end

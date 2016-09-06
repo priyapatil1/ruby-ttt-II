@@ -10,4 +10,8 @@ class Player
     move_given
   end
 
+  def current_move
+    2
+  end
+
 end

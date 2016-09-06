@@ -9,7 +9,7 @@ describe Console do
   let(:console) {Console.new(output)}
 
   context 'new game display' do
-    it 'displays an greeting and empty board' do
+    it 'displays an initial greeting and empty board' do
       console.start
       expect(output.string.chomp).to eq "\nWelcome to Tic Tac Toe!" +
                                         "\nPlease choose a position from 1 - 9\n" +

@@ -11,7 +11,7 @@ describe Console do
   context 'new game display' do
     it 'displays an initial greeting and empty board' do
       console.start
-      expect(output.string.chomp).to eq "\nWelcome to Tic Tac Toe!" +
+      expect(output.string).to eq "\nWelcome to Tic Tac Toe!" +
                                         "\nPlease choose a position from 1 - 9\n" +
                                         "\n -------------\n "  +
                                          "| 1 | 2 | 3 | \n" + 

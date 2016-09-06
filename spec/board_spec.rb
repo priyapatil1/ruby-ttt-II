@@ -16,11 +16,17 @@ describe Board do
     end
   end
 
-  context 'marks board' do
+  context 'marks an empty board' do
+    let(:board) {Board.empty_board}
+
     it 'marks a symbol on the board' do
-      board = Board.empty_board
       board.mark("X", 1)
       expect(board.empty?).to be false
+    end
+
+    it 'marks an X at a given position' do
+      board.mark("X", 1)
+      expect(board.symbol_at(1)).to eq "X"
     end
   end
 end

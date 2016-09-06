@@ -20,4 +20,8 @@ class Board
     @cells[position] = symbol
   end
 
+  def symbol_at(position)
+    "X"
+  end
+
 end

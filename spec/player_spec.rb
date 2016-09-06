@@ -15,12 +15,12 @@ describe Player do
   context 'player move' do
     it 'sets current move' do
       player_x = Player.new("X")
-      expect(player_x.current_move(1)).to eq 1
+      expect(player_x.set_current_move(1)).to eq 1
     end
 
     it 'sets a different current move' do
       player_x = Player.new("X")
-      expect(player_x.current_move(4)).to eq 4
+      expect(player_x.set_current_move(4)).to eq 4
     end
 
   end

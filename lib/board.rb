@@ -13,7 +13,11 @@ class Board
   end
 
   def empty?
-    true
+   @cells == (1..9).to_a 
+  end
+
+  def mark(symbol, position)
+    @cells[position] = symbol
   end
 
 end

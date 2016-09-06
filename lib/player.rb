@@ -7,7 +7,7 @@ class Player
   end
 
   def current_move(move_given)
-    1
+    move_given
   end
 
 end

@@ -30,7 +30,6 @@ describe ConsoleDisplay do
                                   " -------------\n"  +
                                   " | 7 | 8 | 9 | \n" +
                                   " -------------\n"
-
     end
 
     it 'displays board after one move made' do
@@ -91,8 +90,6 @@ describe ConsoleDisplay do
                                       " -------------\n"  +
                                       " | O | X | X | \n" +
                                       " -------------\n"
-
-
     end
 
     it 'does not allow position with X to be overwritten' do

@@ -23,6 +23,13 @@ describe Board do
       expect(board.full?).to be true
     end
 
+    it 'determines half marked board is not full' do
+      board = Board.with_moves(["X",  2,  3,
+                                "X",  5, "O",
+                                "O",  8, "X"])
+      expect(board.full?).to be false 
+    end
+
   end
 
   context 'marks an empty board' do

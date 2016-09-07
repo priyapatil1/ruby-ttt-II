@@ -1,5 +1,5 @@
 class Board
-  
+
   attr_reader :cells
 
   def initialize(cells)
@@ -17,11 +17,14 @@ class Board
   end
 
   def full?
-    true
+    board_positions = (1..9).to_a
+    !board_positions.any? { |free_position| 
+      @cells.include? free_position
+    }
   end
 
   def empty?
-   @cells == (1..9).to_a 
+    @cells == (1..9).to_a 
   end
 
   def mark(symbol, position)

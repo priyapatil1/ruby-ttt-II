@@ -53,7 +53,14 @@ class ConsoleDisplay
   def play_empty_position(game, move, current_player)
     if @game.board.empty_position?(move)
       @game.board.mark(current_player.mark, move)
+    else
+      position_taken_message
     end
+  end
+
+  def position_taken_message
+    message = "\nPlease choose an empty position:"
+    @console.show(message)
   end
 
 end

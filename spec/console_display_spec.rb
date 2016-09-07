@@ -116,6 +116,12 @@ describe ConsoleDisplay do
                                       " -------------\n"
     end
 
+    it 'displays message not to overwrite marked position' do
+      display = create_console_display("1\n2\n2\n3\n5\n4\n6\n8\n7\n9")
+      display.start
+      expect(output.string).to include "\nPlease choose an empty position:"
+    end
+
   end
 
   private

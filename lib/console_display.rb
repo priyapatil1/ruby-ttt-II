@@ -2,8 +2,19 @@ class ConsoleDisplay
 
   ROW_SEPARATOR = "\n -------------\n"
 
-  def initialize(game)
+  def initialize(game, console)
     @game = game 
+    @console = console
+  end
+
+  def show_start_screen
+    show_greeting
+    show_board
+  end
+
+  def show_board
+    board = format_board
+    @console.show(board)
   end
 
   def format_board
@@ -17,6 +28,12 @@ class ConsoleDisplay
 
   def create_rows
     @game.board.cells.each_slice(3)
+  end
+
+  def show_greeting
+    greeting = "\nWelcome to Tic Tac Toe!" +
+               "\nPlease choose a position from 1 - 9\n"
+    @console.show(greeting)
   end
 
 end

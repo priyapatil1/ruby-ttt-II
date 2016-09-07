@@ -12,6 +12,14 @@ class Board
                7, 8, 9])
   end
 
+  def self.with_moves(cells)
+    Board.new(cells)
+  end
+
+  def full?
+    true
+  end
+
   def empty?
    @cells == (1..9).to_a 
   end

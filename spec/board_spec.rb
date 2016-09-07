@@ -16,14 +16,14 @@ describe Board do
       expect(empty_board.empty?).to be true
     end
 
-    it 'determines if board is full' do
+    it 'full board' do
       board = Board.with_moves(["X", "O", "X",
                                 "X", "O", "O",
                                 "O", "X", "X"])
       expect(board.full?).to be true
     end
 
-    it 'determines half marked board is not full' do
+    it 'half marked board is not full' do
       board = Board.with_moves(["X",  2,  3,
                                 "X",  5, "O",
                                 "O",  8, "X"])

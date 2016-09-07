@@ -7,6 +7,11 @@ class ConsoleDisplay
     @console = console
   end
 
+  def start
+    show_start_screen
+    play_one_round
+  end
+
   def show_start_screen
     show_greeting
     show_board
@@ -22,6 +27,12 @@ class ConsoleDisplay
     display = ROW_SEPARATOR
     display += " | " + rows.flat_map { |row|
       [row, ROW_SEPARATOR]}.join(" | ")
+  end
+
+  def play_one_round
+    move = @game.player.set_current_move
+    @game.board.mark("X", move)
+    @console.show(format_board)
   end
 
   private

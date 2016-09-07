@@ -1,5 +1,3 @@
-require 'console_display'
-
 class Console
 
   def initialize(input, output)

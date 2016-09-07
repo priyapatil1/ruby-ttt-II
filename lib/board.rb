@@ -17,11 +17,11 @@ class Board
   end
 
   def mark(symbol, position)
-    @cells[position] = symbol
+    @cells[position - 1] = symbol
   end
 
   def symbol_at(position)
-    @cells[position] 
+    @cells[position - 1]
   end
 
 end

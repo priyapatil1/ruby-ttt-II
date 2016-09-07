@@ -35,7 +35,7 @@ describe ConsoleDisplay do
 
     it 'displays board after one move made' do
       display = create_console_display("1\n")
-      display.play_one_round
+      display.play_round
       expect(output.string).to include"\n -------------\n"  +
                                       " | X | 2 | 3 | \n" +
                                       " -------------\n" +
@@ -46,7 +46,7 @@ describe ConsoleDisplay do
     end
 
     it 'displays greeting and plays first round' do
-      display = create_console_display("1\n2\n3\n4\n5\n\n6\n7")
+      display = create_console_display("1\n2\n3\n4\n5\n\n6\n7\n8\n9")
       display.start
       expect(output.string).to include"\nWelcome to Tic Tac Toe!" +
                                       "\nPlease choose a position from 1 - 9\n" +
@@ -64,14 +64,12 @@ describe ConsoleDisplay do
                                       " -------------\n"  +
                                       " | 7 | 8 | 9 | \n" +
                                       " -------------\n"
-
-
     end
 
     it 'plays second round' do
       display = create_console_display("1\n2\n")
-      display.play_one_round
-      display.play_next_round
+      display.play_round
+      display.play_round
       expect(output.string).to include"\n -------------\n"  +
                                       " | X | O | 3 | \n" +
                                       " -------------\n" +
@@ -82,6 +80,21 @@ describe ConsoleDisplay do
 
 
     end
+
+    it 'plays game till board full' do
+      display = create_console_display("1\n2\n3\n5\n4\n6\n8\n7\n9")
+      display.start
+      expect(output.string).to include"\n -------------\n"  +
+                                      " | X | O | X | \n" +
+                                      " -------------\n" +
+                                      " | X | O | O | \n" +
+                                      " -------------\n"  +
+                                      " | O | X | X | \n" +
+                                      " -------------\n"
+
+
+    end
+
   end
 
   private

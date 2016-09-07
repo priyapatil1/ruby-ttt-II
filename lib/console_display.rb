@@ -9,8 +9,9 @@ class ConsoleDisplay
 
   def start
     show_start_screen
-    play_one_round
-    play_next_round
+    while !@game.board.full?
+      play_round
+    end
   end
 
   def show_start_screen
@@ -30,15 +31,10 @@ class ConsoleDisplay
       [row, ROW_SEPARATOR]}.join(" | ")
   end
 
-  def play_one_round
-    move = @game.player_x.set_current_move
-    @game.board.mark("X", move)
-    @console.show(format_board)
-  end
-
-  def play_next_round
-    move = @game.player_o.set_current_move
-    @game.board.mark("O", move)
+  def play_round
+    current_player = @game.calculate_current_player
+    move = current_player.set_current_move
+    @game.board.mark(current_player.mark, move)
     @console.show(format_board)
   end
 
@@ -50,7 +46,7 @@ class ConsoleDisplay
 
   def show_greeting
     greeting = "\nWelcome to Tic Tac Toe!" +
-               "\nPlease choose a position from 1 - 9\n"
+      "\nPlease choose a position from 1 - 9\n"
     @console.show(greeting)
   end
 

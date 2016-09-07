@@ -19,8 +19,7 @@ class Board
   def full?
     board_positions = (1..9).to_a
     !board_positions.any? { |free_position| 
-      @cells.include? free_position
-    }
+      @cells.include? free_position }
   end
 
   def empty?
@@ -33,6 +32,10 @@ class Board
 
   def symbol_at(position)
     @cells[position - 1]
+  end
+
+  def remaining_cells
+    @cells.count - (@cells.count("X") + @cells.count("O"))
   end
 
 end

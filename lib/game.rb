@@ -13,4 +13,8 @@ class Game
     @player_o = Player.new("O", console)
   end
 
+  def calculate_current_player
+    @board.remaining_cells % 2 == 0 ? @player_o : @player_x
+  end
+
 end

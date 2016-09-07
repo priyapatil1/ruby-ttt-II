@@ -30,6 +30,18 @@ describe Board do
       expect(board.full?).to be false 
     end
 
+    it 'calculates remaining cells for empty board' do
+      empty_board = Board.empty_board
+      expect(empty_board.remaining_cells).to eq 9
+    end
+
+    it 'calculates remaining cells' do
+      board = Board.with_moves(["X",  2,  3,
+                                "X",  5, "O",
+                                "O",  8, "X"])
+      expect(board.remaining_cells).to eq 4
+    end
+
   end
 
   context 'marks an empty board' do

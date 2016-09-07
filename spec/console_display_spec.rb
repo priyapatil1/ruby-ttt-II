@@ -46,7 +46,7 @@ describe ConsoleDisplay do
     end
 
     it 'displays greeting and plays first round' do
-      display = create_console_display("1\n")
+      display = create_console_display("1\n2\n3\n4\n5\n\n6\n7")
       display.start
       expect(output.string).to include"\nWelcome to Tic Tac Toe!" +
                                       "\nPlease choose a position from 1 - 9\n" +
@@ -59,6 +59,21 @@ describe ConsoleDisplay do
                                       " -------------\n"
       expect(output.string).to include"\n -------------\n"  +
                                       " | X | 2 | 3 | \n" +
+                                      " -------------\n" +
+                                      " | 4 | 5 | 6 | \n" +
+                                      " -------------\n"  +
+                                      " | 7 | 8 | 9 | \n" +
+                                      " -------------\n"
+
+
+    end
+
+    it 'plays second round' do
+      display = create_console_display("1\n2\n")
+      display.play_one_round
+      display.play_next_round
+      expect(output.string).to include"\n -------------\n"  +
+                                      " | X | O | 3 | \n" +
                                       " -------------\n" +
                                       " | 4 | 5 | 6 | \n" +
                                       " -------------\n"  +

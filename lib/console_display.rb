@@ -10,6 +10,7 @@ class ConsoleDisplay
   def start
     show_start_screen
     play_one_round
+    play_next_round
   end
 
   def show_start_screen
@@ -30,8 +31,14 @@ class ConsoleDisplay
   end
 
   def play_one_round
-    move = @game.player.set_current_move
+    move = @game.player_x.set_current_move
     @game.board.mark("X", move)
+    @console.show(format_board)
+  end
+
+  def play_next_round
+    move = @game.player_o.set_current_move
+    @game.board.mark("O", move)
     @console.show(format_board)
   end
 

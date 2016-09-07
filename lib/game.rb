@@ -4,11 +4,13 @@ require 'player'
 class Game
 
   attr_reader :board
-  attr_reader :player
+  attr_reader :player_x
+  attr_reader :player_o
 
   def initialize(console)
     @board = Board.empty_board 
-    @player = Player.new("X", console)
+    @player_x = Player.new("X", console)
+    @player_o = Player.new("O", console)
   end
 
 end

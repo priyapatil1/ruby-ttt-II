@@ -1,6 +1,7 @@
 class Player
 
   attr_reader :mark
+  attr_reader :current_move
 
   def initialize(mark, console)
     @mark = mark 
@@ -8,11 +9,7 @@ class Player
   end
 
   def set_current_move
-    @move_given = @console.get_input 
-  end
-
-  def current_move
-    @move_given
+    @current_move = @console.get_input 
   end
 
 end

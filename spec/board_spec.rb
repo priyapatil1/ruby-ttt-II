@@ -42,18 +42,25 @@ describe Board do
       expect(board.remaining_cells).to eq 4
     end
 
-    it 'determines empty position' do
+    it 'empty position' do
       board = Board.with_moves(["X",  2,  3,
                                 "X",  5, "O",
                                 "O",  8, "X"])
       expect(board.empty_position?(2)).to eq true
     end
 
-    it 'determines position not empty' do
+    it 'position with X not empty' do
       board = Board.with_moves(["X",  2,  3,
                                 "X",  5, "O",
                                 "O",  8, "X"])
       expect(board.empty_position?(1)).to eq false
+    end
+
+    it 'position with O not empty' do
+      board = Board.with_moves(["X",  2,  3,
+                                "X",  5, "O",
+                                "O",  8, "X"])
+      expect(board.empty_position?(7)).to eq false
     end
 
   end

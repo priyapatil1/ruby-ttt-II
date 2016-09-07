@@ -40,7 +40,7 @@ class Board
 
   def empty_position?(input)
     position = @cells[input - 1]
-    position != "X"
+    position != "X" && position != "O"
   end
 
 end

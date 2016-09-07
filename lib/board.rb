@@ -38,4 +38,9 @@ class Board
     @cells.count - (@cells.count("X") + @cells.count("O"))
   end
 
+  def empty_position?(input)
+    position = @cells[input - 1]
+    position != "X"
+  end
+
 end

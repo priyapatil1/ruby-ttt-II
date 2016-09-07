@@ -95,6 +95,31 @@ describe ConsoleDisplay do
 
     end
 
+    it 'does not allow position to be overwritten' do
+      display = create_console_display("1\n1\n2\n3\n5\n4\n6\n8\n7\n9")
+      display.start
+      expect(output.string).to include"\n -------------\n"  +
+                                      " | X | O | X | \n" +
+                                      " -------------\n" +
+                                      " | X | O | O | \n" +
+                                      " -------------\n"  +
+                                      " | O | X | X | \n" +
+                                      " -------------\n"
+
+    end
+
+    it 'does not allow position with X to be overwritten' do
+      display = create_console_display("1\n1\n2\n3\n5\n4\n6\n8\n7\n9")
+      display.start
+      expect(output.string).to include"\n -------------\n"  +
+                                      " | X | O | X | \n" +
+                                      " -------------\n" +
+                                      " | X | O | O | \n" +
+                                      " -------------\n"  +
+                                      " | O | X | X | \n" +
+                                      " -------------\n"
+    end
+
   end
 
   private

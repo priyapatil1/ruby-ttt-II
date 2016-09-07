@@ -34,7 +34,9 @@ class ConsoleDisplay
   def play_round
     current_player = @game.calculate_current_player
     move = current_player.set_current_move
-    @game.board.mark(current_player.mark, move)
+    if @game.board.empty_position?(move)
+      @game.board.mark(current_player.mark, move)
+    end
     @console.show(format_board)
   end
 

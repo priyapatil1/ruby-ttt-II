@@ -48,6 +48,18 @@ describe Player do
       expect(output.string).to eq "Please enter a valid move (1-9)\n"
     end
 
+    it 'does not allow a move of 10 to be set' do
+      player_x = moves("10\n5\n")
+      player_x.set_current_move
+      expect(output.string).to eq "Please enter a valid move (1-9)\n"
+    end
+
+    it 'does not allow a move of 60 to be set' do
+      player_x = moves("60\n1\n")
+      player_x.set_current_move
+      expect(output.string).to eq "Please enter a valid move (1-9)\n"
+    end
+
   end
 
   private

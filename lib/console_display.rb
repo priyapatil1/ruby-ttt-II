@@ -24,20 +24,18 @@ class ConsoleDisplay
     @console.show(board)
   end
 
+  def play_round
+    current_player = @game.calculate_current_player
+    current_move = current_player.set_current_move
+    play_empty_position(@game, current_move, current_player)
+    show_board
+  end
+
   def format_board
     rows = create_rows
     display = ROW_SEPARATOR
     display += " | " + rows.flat_map { |row|
       [row, ROW_SEPARATOR]}.join(" | ")
-  end
-
-  def play_round
-    current_player = @game.calculate_current_player
-    move = current_player.set_current_move
-    if @game.board.empty_position?(move)
-      @game.board.mark(current_player.mark, move)
-    end
-    @console.show(format_board)
   end
 
   private
@@ -50,6 +48,12 @@ class ConsoleDisplay
     greeting = "\nWelcome to Tic Tac Toe!" +
       "\nPlease choose a position from 1 - 9\n"
     @console.show(greeting)
+  end
+
+  def play_empty_position(game, move, current_player)
+    if @game.board.empty_position?(move)
+      @game.board.mark(current_player.mark, move)
+    end
   end
 
 end

@@ -4,7 +4,7 @@ describe Board do
 
   context 'determines board state' do
 
-    it 'has an empty board' do
+    it 'is an empty board' do
       board = Board.new([1, 2, 3,
                          4, 5, 6,
                          7, 8, 9])
@@ -16,7 +16,7 @@ describe Board do
       expect(empty_board.empty?).to be true
     end
 
-    it 'full board' do
+    it 'is a full board' do
       board = Board.with_moves(["X", "O", "X",
                                 "X", "O", "O",
                                 "O", "X", "X"])
@@ -35,14 +35,14 @@ describe Board do
       expect(empty_board.remaining_cells).to eq 9
     end
 
-    it 'calculates remaining cells' do
+    it 'calculates remaining cells for half marked board' do
       board = Board.with_moves(["X",  2,  3,
                                 "X",  5, "O",
                                 "O",  8, "X"])
       expect(board.remaining_cells).to eq 4
     end
 
-    it 'empty position' do
+    it 'finds empty position' do
       board = Board.with_moves(["X",  2,  3,
                                 "X",  5, "O",
                                 "O",  8, "X"])

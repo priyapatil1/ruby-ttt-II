@@ -25,7 +25,7 @@ class ConsoleDisplay
   end
 
   def play_round
-    current_player = @game.calculate_current_player
+    current_player = @game.current_player
     current_move = current_player.set_current_move
     play_empty_position(@game, current_move, current_player)
     show_board
@@ -50,9 +50,9 @@ class ConsoleDisplay
     @console.show(greeting)
   end
 
-  def play_empty_position(game, move, current_player)
+  def play_empty_position(game, move, player)
     if @game.board.empty_position?(move)
-      @game.board.mark(current_player.mark, move)
+      @game.board.mark(player.mark, move)
     else
       position_taken_message
     end

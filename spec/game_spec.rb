@@ -8,7 +8,7 @@ describe Game do
     output = StringIO.new("")
     console = Console.new(input, output)
     game = Game.new(console)
-    expect(game.calculate_current_player.mark).to eq "X"
+    expect(game.current_player.mark).to eq "X"
   end
 
 end

@@ -94,6 +94,19 @@ describe Board do
                                    "O", "X", "O"])
       expect(x_first_row_win.win?).to eq true
     end
-  end
 
+    it 'no wins' do
+      board = Board.with_moves(["X",  2,  3,
+                                "X",  5, "O",
+                                "O",  8, "X"])
+      expect(board.win?).to eq false 
+    end
+
+    it 'determines a first row win for O' do
+      o_first_row_win = Board.new(["O", "O", "O",
+                                   "O", "X", "X",
+                                   "X", "O", "X"])
+      expect(o_first_row_win.win?).to eq true 
+    end
+  end
 end

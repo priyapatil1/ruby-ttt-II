@@ -44,7 +44,17 @@ class Board
   end
 
   def win?
-    true
+    win_for("X") || win_for("O")
   end
 
+  private
+
+  def win_for(mark)
+    rows.map {|row| row.all? {|position|
+      @cells[position] == mark}}.include? true
+  end
+
+  def rows
+    (0..(9 - 1)).each_slice(3)
+  end
 end

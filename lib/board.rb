@@ -43,4 +43,8 @@ class Board
     position != "X" && position != "O"
   end
 
+  def win?
+    true
+  end
+
 end

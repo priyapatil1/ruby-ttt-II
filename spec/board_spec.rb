@@ -2,6 +2,7 @@ require 'board'
 
 describe Board do 
 
+
   context 'determines board state' do
 
     it 'is an empty board' do
@@ -84,6 +85,15 @@ describe Board do
       expect(board.symbol_at(2)).to eq "O"
     end
 
+  end
+
+  context 'winning lines' do
+    it 'first row win for X' do
+      x_first_row_win = Board.new(["X", "X", "X",
+                                   "X", "O", "O",
+                                   "O", "X", "O"])
+      expect(x_first_row_win.win?).to eq true
+    end
   end
 
 end

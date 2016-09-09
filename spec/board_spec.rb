@@ -95,6 +95,13 @@ describe Board do
       expect(x_first_row_win.win?).to eq true
     end
 
+    it 'first row win for O' do
+      o_first_row_win = Board.new(["O", "O", "O",
+                                   "O", "X", "X",
+                                   "X", "O", "X"])
+      expect(o_first_row_win.win?).to eq true
+    end
+
     it 'no wins' do
       board = Board.with_moves(["X",  2,  3,
                                 "X",  5, "O",
@@ -102,11 +109,19 @@ describe Board do
       expect(board.win?).to eq false 
     end
 
-    it 'determines a first row win for O' do
-      o_first_row_win = Board.new(["O", "O", "O",
-                                   "O", "X", "X",
-                                   "X", "O", "X"])
-      expect(o_first_row_win.win?).to eq true 
+    it 'second row win for X' do
+      x_second_row_win = Board.new(["X", "O", "O",
+                                    "X", "X", "X",
+                                    "O", "X", "O"])
+      expect(x_second_row_win.win?).to eq true
     end
+
+    it 'second row win for O' do
+      o_second_row_win = Board.new(["O", "X", "X",
+                                    "O", "O", "O",
+                                    "X", "O", "X"])
+      expect(o_second_row_win.win?).to eq true
+    end
+
   end
 end

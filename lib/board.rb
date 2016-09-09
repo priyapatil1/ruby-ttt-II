@@ -55,6 +55,6 @@ class Board
   end
 
   def rows
-    (0..9 - 1).each_slice(3)
+    (0..(6 - 1)).each_slice(3)
   end
 end

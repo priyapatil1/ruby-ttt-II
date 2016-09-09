@@ -59,7 +59,8 @@ class Board
   end
 
   def winning_column(mark)
-    @cells[0] == @cells[3] && @cells[3] == @cells[6]
+    @cells[0] == @cells[3] && @cells[3] == @cells[6] ||
+    @cells[1] == @cells[4] && @cells[4] == @cells[7]
   end
 
   def rows

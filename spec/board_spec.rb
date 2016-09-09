@@ -120,12 +120,18 @@ describe Board do
 
   context 'winning lines' do
 
-    it 'winning column' do
+    it 'winning first column' do
       x_first_column_win = Board.new(["X", "X", "O",
                                       "X", "O", "O",
                                       "X", "O", "X"])
       expect(x_first_column_win.win?).to eq true
     end
 
+    it 'winning second column' do
+      o_second_column_win = Board.new(["X", "O", "O",
+                                       "O", "O", "X",
+                                       "X", "O", "X"])
+      expect(o_second_column_win.win?).to eq true
+    end
   end
 end

@@ -117,4 +117,15 @@ describe Board do
     end
 
   end
+
+  context 'winning lines' do
+
+    it 'winning column' do
+      x_first_column_win = Board.new(["X", "X", "O",
+                                      "X", "O", "O",
+                                      "X", "O", "X"])
+      expect(x_first_column_win.win?).to eq true
+    end
+
+  end
 end

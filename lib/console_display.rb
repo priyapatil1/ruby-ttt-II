@@ -1,6 +1,7 @@
 class ConsoleDisplay
 
   ROW_SEPARATOR = "\n -------------\n"
+  COLUMN_SEPARATOR = " | "
 
   def initialize(game, console)
     @game = game 
@@ -33,15 +34,14 @@ class ConsoleDisplay
   end
 
   def format_board
-    rows = create_rows
     display = ROW_SEPARATOR
-    display += " | " + rows.flat_map { |row|
-      [row, ROW_SEPARATOR]}.join(" | ")
+    display += COLUMN_SEPARATOR + rows.flat_map { |row|
+      [row, ROW_SEPARATOR]}.join(COLUMN_SEPARATOR)
   end
 
   private
 
-  def create_rows
+  def rows
     @game.board.cells.each_slice(3)
   end
 

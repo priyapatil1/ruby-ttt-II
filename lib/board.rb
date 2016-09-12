@@ -50,16 +50,11 @@ class Board
   private
 
   def win_for(mark)
-    winning_column(mark) || winning_rows(mark)
+    winning_line(columns, mark) || winning_line(rows, mark)
   end
 
-  def winning_column(mark)
-    columns.map {|column| column.all? {|position|
-      @cells[position] == mark}}.include? true
-  end
-
-  def winning_rows(mark)
-    rows.map {|row| row.all? {|position|
+  def winning_line(lines, mark)
+    lines.map {|line| line.all? {|position|
       @cells[position] == mark}}.include? true
   end
 

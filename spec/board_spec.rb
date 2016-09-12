@@ -152,5 +152,12 @@ describe Board do
       expect(x_diagonal_win.win?).to eq true
     end
 
+    it 'finds a winning right to left diagonal' do
+      o_diagonal_win = Board.new(["X", "O", "O",
+                                  "X", "O", "X",
+                                  "O", "X", "X"])
+      expect(o_diagonal_win.win?).to eq true
+    end
+
   end
 end

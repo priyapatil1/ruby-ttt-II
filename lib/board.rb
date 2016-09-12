@@ -53,17 +53,21 @@ class Board
     winning_column(mark) || winning_rows(mark)
   end
 
+  def winning_column(mark)
+    columns.map {|column| column.all? {|position|
+      @cells[position] == mark}}.include? true
+  end
+
   def winning_rows(mark)
     rows.map {|row| row.all? {|position|
       @cells[position] == mark}}.include? true
   end
 
-  def winning_column(mark)
-    @cells[0] == @cells[3] && @cells[3] == @cells[6] ||
-    @cells[1] == @cells[4] && @cells[4] == @cells[7]
-  end
-
   def rows
     (0..(9 - 1)).each_slice(3)
+  end
+
+  def columns
+    rows.to_a.transpose
   end
 end

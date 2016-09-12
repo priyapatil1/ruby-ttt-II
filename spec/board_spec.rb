@@ -2,7 +2,6 @@ require 'board'
 
 describe Board do 
 
-
   context 'determines board state' do
 
     it 'is an empty board' do
@@ -132,6 +131,13 @@ describe Board do
                                        "O", "O", "X",
                                        "X", "O", "X"])
       expect(o_second_column_win.win?).to eq true
+    end
+
+    it 'winning third column' do
+      x_third_column_win = Board.new(["O", "X", "X",
+                                      "O", "O", "X",
+                                      "X", "O", "X"])
+      expect(x_third_column_win.win?).to eq true
     end
   end
 end

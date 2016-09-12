@@ -32,19 +32,7 @@ describe ConsoleDisplay do
                                   " -------------\n"
     end
 
-    it 'displays board after one move made' do
-      display = create_console_display("1\n")
-      display.play_round
-      expect(output.string).to include"\n -------------\n"  +
-                                      " | X | 2 | 3 | \n" +
-                                      " -------------\n" +
-                                      " | 4 | 5 | 6 | \n" +
-                                      " -------------\n"  +
-                                      " | 7 | 8 | 9 | \n" +
-                                      " -------------\n"
-    end
-
-    it 'displays greeting and plays first round' do
+    it 'displays greeting and first move' do
       display = create_console_display("1\n2\n3\n4\n5\n\n6\n7\n8\n9")
       display.start
       expect(output.string).to include"\nWelcome to Tic Tac Toe!" +
@@ -65,22 +53,7 @@ describe ConsoleDisplay do
                                       " -------------\n"
     end
 
-    it 'plays second round' do
-      display = create_console_display("1\n2\n")
-      display.play_round
-      display.play_round
-      expect(output.string).to include"\n -------------\n"  +
-                                      " | X | O | 3 | \n" +
-                                      " -------------\n" +
-                                      " | 4 | 5 | 6 | \n" +
-                                      " -------------\n"  +
-                                      " | 7 | 8 | 9 | \n" +
-                                      " -------------\n"
-
-
-    end
-
-    it 'plays game till board full' do
+    it 'displays full board' do
       display = create_console_display("1\n2\n3\n5\n4\n6\n8\n7\n9")
       display.start
       expect(output.string).to include"\n -------------\n"  +
@@ -119,13 +92,25 @@ describe ConsoleDisplay do
     it 'displays message not to overwrite marked position' do
       display = create_console_display("1\n2\n2\n3\n5\n4\n6\n8\n7\n9")
       display.start
-      expect(output.string).to include "\nPlease choose an empty position:"
+      expect(output.string).to include "\nPlease choose an empty position\n"
     end
 
-    it 'displays game over message when game won' do
-      display = create_console_display("1\n2\n3\n5\n4\n6\n7\n")
+    it 'displays game over message when game won by X' do
+      display = create_console_display("1\n2\n3\n4\n5\n6\n7\n")
       display.start
-      expect(output.string).to include "\nGame over!"
+      expect(output.string).to include "Game over! X is the winner!\n"
+    end
+
+    it 'displays game over message when game won by O' do
+      display = create_console_display("1\n2\n3\n5\n6\n8\n")
+      display.start
+      expect(output.string).to include "Game over! O is the winner!\n"
+    end
+
+    it 'displays drawn game message' do
+      display = create_console_display("1\n2\n3\n4\n6\n5\n8\n9\n7\n")
+      display.start
+      expect(output.string).to include "Game over! It's a draw"
     end
 
   end

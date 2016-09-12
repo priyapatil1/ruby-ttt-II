@@ -10,8 +10,10 @@ class ConsoleDisplay
 
   def start
     show_start_screen
-    while !@game.board.full? && !@game.board.won?
-      play_round
+    while !@game.over?
+      play_turn
+      show_board
+      game_drawn?
       game_won?
     end
   end
@@ -27,10 +29,7 @@ class ConsoleDisplay
   end
 
   def play_round
-    current_player = @game.current_player
-    current_move = current_player.set_current_move
-    play_empty_position(@game, current_move, current_player)
-    show_board
+    play_empty_position
   end
 
   def format_board
@@ -51,27 +50,34 @@ class ConsoleDisplay
     @console.show(greeting)
   end
 
-  def play_empty_position(game, move, player)
-    if @game.board.empty_position?(move)
-      @game.board.mark(player.mark, move)
-    else
-      position_taken_message
-    end
+  def play_turn
+    @game.mark_position
   end
 
   def game_won?
-    if @game.board.won?
+    if @game.won?
       game_won_message
     end
   end
 
+  def game_drawn?
+    if @game.board.full? && !@game.board.won?
+      game_drawn_message
+    end
+  end
+
   def position_taken_message
-    message = "\nPlease choose an empty position:"
+    message = "\nPlease choose an empty position"
     @console.show(message)
   end
 
   def game_won_message
-    message = "\nGame over!"
+    message = "\nGame over! #{@game.previous_player.mark} is the winner!"
+    @console.show(message)
+  end
+
+  def game_drawn_message
+    message = "\nGame over! It's a draw"
     @console.show(message)
   end
 

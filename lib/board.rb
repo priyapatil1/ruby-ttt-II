@@ -26,8 +26,11 @@ class Board
     @cells == (1..9).to_a 
   end
 
-  def mark(symbol, position)
-    @cells[position - 1] = symbol
+  def mark_empty_position(symbol, position)
+    cell_to_mark = @cells[position - 1]
+    if cell_to_mark != "X" && cell_to_mark != "O"
+      @cells[position - 1] = symbol
+    end
   end
 
   def symbol_at(position)
@@ -50,7 +53,7 @@ class Board
   private
 
   def win_for(mark)
-    winning_line(columns, mark) || winning_line(rows, mark) || winning_line(diagonal, mark)
+    winning_line(columns, mark) || winning_line(rows, mark) || winning_line(diagonals, mark)
   end
 
   def winning_line(lines, mark)
@@ -66,7 +69,7 @@ class Board
     rows.to_a.transpose
   end
 
-  def diagonal
+  def diagonals
     left_to_right = [0, 4, 8]
     right_to_left = [2, 4, 6]
     [left_to_right, right_to_left]

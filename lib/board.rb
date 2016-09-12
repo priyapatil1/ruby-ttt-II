@@ -50,7 +50,7 @@ class Board
   private
 
   def win_for(mark)
-    winning_line(columns, mark) || winning_line(rows, mark)
+    winning_line(columns, mark) || winning_line(rows, mark) || winning_line(diagonal, mark)
   end
 
   def winning_line(lines, mark)
@@ -64,5 +64,9 @@ class Board
 
   def columns
     rows.to_a.transpose
+  end
+
+  def diagonal
+    [[0, 4, 8]]
   end
 end

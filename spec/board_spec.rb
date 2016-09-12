@@ -86,7 +86,8 @@ describe Board do
 
   end
 
-  context 'winning lines' do
+  context 'winning rows' do
+
     it 'first row win for X' do
       x_first_row_win = Board.new(["X", "X", "X",
                                    "X", "O", "O",
@@ -117,7 +118,7 @@ describe Board do
 
   end
 
-  context 'winning lines' do
+  context 'winning columns' do
 
     it 'winning first column' do
       x_first_column_win = Board.new(["X", "X", "O",

@@ -10,12 +10,12 @@ class Player
 
   def set_current_move(board)
     move = @console.get_input
-    validate_move(board, move)
+    valid_move(board, move)
   end
 
   private
 
-  def validate_move(board, move)
+  def valid_move(board, move)
     if empty(board, move) && within_board(move)
       @current_move = move
     elsif !empty(board, move)

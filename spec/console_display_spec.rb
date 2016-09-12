@@ -122,6 +122,12 @@ describe ConsoleDisplay do
       expect(output.string).to include "\nPlease choose an empty position:"
     end
 
+    it 'displays game won message when game won' do
+      display = create_console_display("1\n2\n3\n5\n4\n6\n7\n")
+      display.start
+      expect(output.string).to include "\nGame over!"
+    end
+
   end
 
   private

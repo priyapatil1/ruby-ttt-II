@@ -92,28 +92,28 @@ describe Board do
       x_first_row_win = Board.new(["X", "X", "X",
                                    "X", "O", "O",
                                    "O", "X", "O"])
-      expect(x_first_row_win.win?).to eq true
+      expect(x_first_row_win.won?).to eq true
     end
 
     it 'no wins' do
       board = Board.with_moves(["X",  2,  3,
                                 "X",  5, "O",
                                 "O",  8, "X"])
-      expect(board.win?).to eq false 
+      expect(board.won?).to eq false
     end
 
     it 'second row win for X' do
       x_second_row_win = Board.new(["X", "O", "X",
                                     "O", "O", "O",
                                     "O", "X", "O"])
-      expect(x_second_row_win.win?).to eq true
+      expect(x_second_row_win.won?).to eq true
     end
 
     it 'third row win' do
       x_third_row_win = Board.new(["X", "O", "O",
                                    "O", "X", "O",
                                    "X", "X", "X"])
-      expect(x_third_row_win.win?).to eq true
+      expect(x_third_row_win.won?).to eq true
     end
 
   end
@@ -124,21 +124,21 @@ describe Board do
       x_first_column_win = Board.new(["X", "X", "O",
                                       "X", "O", "O",
                                       "X", "O", "X"])
-      expect(x_first_column_win.win?).to eq true
+      expect(x_first_column_win.won?).to eq true
     end
 
     it 'winning second column' do
       o_second_column_win = Board.new(["X", "O", "O",
                                        "O", "O", "X",
                                        "X", "O", "X"])
-      expect(o_second_column_win.win?).to eq true
+      expect(o_second_column_win.won?).to eq true
     end
 
     it 'winning third column' do
       x_third_column_win = Board.new(["O", "X", "X",
                                       "O", "O", "X",
                                       "X", "O", "X"])
-      expect(x_third_column_win.win?).to eq true
+      expect(x_third_column_win.won?).to eq true
     end
 
   end
@@ -149,14 +149,14 @@ describe Board do
       x_diagonal_win = Board.new(["X", "O", "O",
                                   "X", "X", "O",
                                   "O", "X", "X"])
-      expect(x_diagonal_win.win?).to eq true
+      expect(x_diagonal_win.won?).to eq true
     end
 
     it 'finds a winning right to left diagonal' do
       o_diagonal_win = Board.new(["X", "O", "O",
                                   "X", "O", "X",
                                   "O", "X", "X"])
-      expect(o_diagonal_win.win?).to eq true
+      expect(o_diagonal_win.won?).to eq true
     end
 
   end

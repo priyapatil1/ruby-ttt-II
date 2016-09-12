@@ -9,8 +9,9 @@ class ConsoleDisplay
 
   def start
     show_start_screen
-    while !@game.board.full?
+    while !@game.board.full? && !@game.board.won?
       play_round
+      game_won?
     end
   end
 
@@ -46,7 +47,7 @@ class ConsoleDisplay
 
   def show_greeting
     greeting = "\nWelcome to Tic Tac Toe!" +
-      "\nPlease choose a position from 1 - 9\n"
+               "\nPlease choose a position from 1 - 9\n"
     @console.show(greeting)
   end
 
@@ -58,8 +59,19 @@ class ConsoleDisplay
     end
   end
 
+  def game_won?
+    if @game.board.won?
+      game_won_message
+    end
+  end
+
   def position_taken_message
     message = "\nPlease choose an empty position:"
+    @console.show(message)
+  end
+
+  def game_won_message
+    message = "\nGame over!"
     @console.show(message)
   end
 

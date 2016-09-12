@@ -43,14 +43,14 @@ class Board
     position != "X" && position != "O"
   end
 
-  def win?
+  def won?
     win_for("X") || win_for("O")
   end
 
   private
 
   def win_for(mark)
-    winning_line(columns, mark) || winning_line(rows, mark) || winning_line(diagonals, mark)
+    winning_line(columns, mark) || winning_line(rows, mark) || winning_line(diagonal, mark)
   end
 
   def winning_line(lines, mark)
@@ -66,7 +66,7 @@ class Board
     rows.to_a.transpose
   end
 
-  def diagonals
+  def diagonal
     left_to_right = [0, 4, 8]
     right_to_left = [2, 4, 6]
     [left_to_right, right_to_left]

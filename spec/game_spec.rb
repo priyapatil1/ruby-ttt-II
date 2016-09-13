@@ -1,5 +1,6 @@
 require 'game'
 require 'console'
+require 'player'
 
 describe Game do
   let(:output) {StringIO.new("")}
@@ -7,7 +8,9 @@ describe Game do
 
   it 'calculates current player' do
     console = Console.new(input, output)
-    game = Game.new(console)
+    player_x = Player.new("X", console)
+    player_o = Player.new("O", console)
+    game = Game.new(console, player_x, player_o)
     expect(game.current_player.mark).to eq "X"
   end
 
@@ -38,8 +41,9 @@ describe Game do
   def setup_game(moves)
     input = StringIO.new(moves)
     console = Console.new(input, output)
-    game = Game.new(console)
-
+    player_x = Player.new("X", console)
+    player_o = Player.new("O", console)
+    game = Game.new(console, player_x, player_o)
   end
 
   def play_rounds(number_of_rounds, game)

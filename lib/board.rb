@@ -58,6 +58,12 @@ class Board
     move.between?(1, @size)
   end
 
+  def first_empty_position
+    @cells.index do |cell|
+      cell != "X" && cell != "O"
+    end
+  end
+
   private
 
   def win_for(mark)

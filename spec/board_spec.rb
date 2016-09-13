@@ -1,6 +1,6 @@
 require 'board'
 
-describe Board do 
+describe Board do
 
   context 'determines board state' do
 
@@ -27,7 +27,7 @@ describe Board do
       board = Board.with_moves(["X",  2,  3,
                                 "X",  5, "O",
                                 "O",  8, "X"])
-      expect(board.full?).to be false 
+      expect(board.full?).to be false
     end
 
     it 'calculates remaining cells for empty board' do

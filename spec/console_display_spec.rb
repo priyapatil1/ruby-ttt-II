@@ -120,7 +120,9 @@ describe ConsoleDisplay do
   def create_console_display(move)
     input = StringIO.new(move)
     console = Console.new(input, output)
-    game = Game.new(console)
+    player_x = Player.new("X", console)
+    player_o = Player.new("O", console)
+    game = Game.new(console, player_x, player_o)
     display = ConsoleDisplay.new(game, console)
   end
 

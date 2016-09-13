@@ -1,6 +1,7 @@
 class ConsoleDisplay
 
   ROW_SEPARATOR = "\n -------------\n"
+  COLUMN_SEPARATOR = " | "
 
   def initialize(game, console)
     @game = game 
@@ -9,9 +10,11 @@ class ConsoleDisplay
 
   def start
     show_start_screen
-    while !@game.board.full?
-      play_round
+    while !@game.over?
+      play_turn
+      show_board
     end
+    display_outcome
   end
 
   def show_start_screen
@@ -25,41 +28,53 @@ class ConsoleDisplay
   end
 
   def play_round
-    current_player = @game.calculate_current_player
-    current_move = current_player.set_current_move
-    play_empty_position(@game, current_move, current_player)
-    show_board
+    play_empty_position
   end
 
   def format_board
-    rows = create_rows
     display = ROW_SEPARATOR
-    display += " | " + rows.flat_map { |row|
-      [row, ROW_SEPARATOR]}.join(" | ")
+    display += COLUMN_SEPARATOR + rows.flat_map { |row|
+      [row, ROW_SEPARATOR]}.join(COLUMN_SEPARATOR)
   end
 
   private
 
-  def create_rows
-    @game.board.cells.each_slice(3)
+  def rows
+    @game.board.row_content
   end
 
   def show_greeting
-    greeting = "\nWelcome to Tic Tac Toe!" +
-      "\nPlease choose a position from 1 - 9\n"
-    @console.show(greeting)
+    @console.display_greeting
   end
 
-  def play_empty_position(game, move, current_player)
-    if @game.board.empty_position?(move)
-      @game.board.mark(current_player.mark, move)
-    else
-      position_taken_message
+  def play_turn
+    @game.mark_position
+  end
+
+  def display_outcome
+    game_won?
+    game_drawn?
+  end
+
+  def game_won?
+    if @game.won?
+      game_won_message
     end
   end
 
-  def position_taken_message
-    message = "\nPlease choose an empty position:"
+  def game_drawn?
+    if @game.drawn?
+      game_drawn_message
+    end
+  end
+
+  def game_won_message
+    message = "\nGame over! #{@game.previous_player.mark} is the winner!"
+    @console.show(message)
+  end
+
+  def game_drawn_message
+    message = "\nGame over! It's a draw"
     @console.show(message)
   end
 

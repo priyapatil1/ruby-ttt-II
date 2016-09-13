@@ -13,8 +13,29 @@ class Game
     @player_o = Player.new("O", console)
   end
 
-  def calculate_current_player
+  def current_player
     @board.remaining_cells % 2 == 0 ? @player_o : @player_x
+  end
+
+  def previous_player
+    @board.remaining_cells % 2 == 1 ? @player_o : @player_x
+  end
+
+  def mark_position
+    current_player.set_current_move(@board)
+    @board.mark_empty_position(current_player.mark, current_player.current_move)
+  end
+
+  def over?
+    @board.won? || @board.full?
+  end
+
+  def won?
+    @board.won?
+  end
+
+  def drawn?
+    @board.full? && !@board.won?
   end
 
 end

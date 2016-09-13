@@ -61,7 +61,7 @@ class ConsoleDisplay
   end
 
   def game_drawn?
-    if @game.board.full? && !@game.board.won?
+    if @game.drawn?
       game_drawn_message
     end
   end

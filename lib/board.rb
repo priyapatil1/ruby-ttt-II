@@ -57,8 +57,8 @@ class Board
   end
 
   def winning_line(lines, mark)
-    lines.map {|line| line.all? {|position|
-      @cells[position] == mark}}.include? true
+    lines.any? {|line| line.all? {|position|
+      @cells[position] == mark}}
   end
 
   def rows

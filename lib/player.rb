@@ -19,10 +19,10 @@ class Player
     if board.empty_position?(move) && board.within_board?(move)
       @current_move = move
     elsif !board.empty_position?(move)
-      @console.show("Please choose an empty position\n")
+      @console.position_taken_message
       set_current_move(board)
     elsif !board.within_board?(move)
-      @console.show("Please enter a valid move (1-9)\n")
+      @console.within_board_message
       set_current_move(board)
     end
   end

@@ -44,9 +44,7 @@ class ConsoleDisplay
   end
 
   def show_greeting
-    greeting = "\nWelcome to Tic Tac Toe!" +
-               "\nPlease choose a position from 1 - 9\n"
-    @console.show(greeting)
+    @console.display_greeting
   end
 
   def play_turn
@@ -68,11 +66,6 @@ class ConsoleDisplay
     if @game.drawn?
       game_drawn_message
     end
-  end
-
-  def position_taken_message
-    message = "\nPlease choose an empty position"
-    @console.show(message)
   end
 
   def game_won_message

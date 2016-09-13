@@ -13,9 +13,8 @@ class ConsoleDisplay
     while !@game.over?
       play_turn
       show_board
-      game_drawn?
-      game_won?
     end
+    display_outcome
   end
 
   def show_start_screen
@@ -41,7 +40,7 @@ class ConsoleDisplay
   private
 
   def rows
-    @game.board.cells.each_slice(3)
+    @game.board.row_content
   end
 
   def show_greeting
@@ -52,6 +51,11 @@ class ConsoleDisplay
 
   def play_turn
     @game.mark_position
+  end
+
+  def display_outcome
+    game_won?
+    game_drawn?
   end
 
   def game_won?

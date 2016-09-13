@@ -4,6 +4,7 @@ class Board
 
   def initialize(cells)
     @cells = cells
+    @size = cells.length
   end
 
   def self.empty_board
@@ -17,13 +18,12 @@ class Board
   end
 
   def full?
-    board_positions = (1..9).to_a
-    !board_positions.any? { |free_position| 
-      @cells.include? free_position }
+    board_positions = (1..@size).to_a
+    !board_positions.any? { |free_position| @cells.include? free_position }
   end
 
   def empty?
-    @cells == (1..9).to_a 
+    @cells == (1..@size).to_a
   end
 
   def mark_empty_position(symbol, position)
@@ -50,6 +50,14 @@ class Board
     win_for("X") || win_for("O")
   end
 
+  def row_content
+    @cells.each_slice(3)
+  end
+
+  def within_board?(move)
+    move.between?(1, @size)
+  end
+
   private
 
   def win_for(mark)
@@ -57,12 +65,14 @@ class Board
   end
 
   def winning_line(lines, mark)
-    lines.any? {|line| line.all? {|position|
-      @cells[position] == mark}}
+    lines.any? do |line|
+      line.all? { |position| @cells[position] == mark}
+    end
   end
 
   def rows
-    (0..(9 - 1)).each_slice(3)
+    line_length = Math.sqrt(@size)
+    (0..(@size - 1)).each_slice(line_length)
   end
 
   def columns
@@ -74,4 +84,5 @@ class Board
     right_to_left = [2, 4, 6]
     [left_to_right, right_to_left]
   end
+
 end

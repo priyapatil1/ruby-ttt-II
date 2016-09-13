@@ -1,22 +1,81 @@
 class ConsoleDisplay
 
   ROW_SEPARATOR = "\n -------------\n"
+  COLUMN_SEPARATOR = " | "
 
-  def initialize(game)
+  def initialize(game, console)
     @game = game 
+    @console = console
+  end
+
+  def start
+    show_start_screen
+    while !@game.over?
+      play_turn
+      show_board
+    end
+    display_outcome
+  end
+
+  def show_start_screen
+    show_greeting
+    show_board
+  end
+
+  def show_board
+    board = format_board
+    @console.show(board)
+  end
+
+  def play_round
+    play_empty_position
   end
 
   def format_board
     display = ROW_SEPARATOR
-    rows = create_rows
-    display += " | " + rows.flat_map { |row|
-      [row, ROW_SEPARATOR]}.join(" | ")
+    display += COLUMN_SEPARATOR + rows.flat_map { |row|
+      [row, ROW_SEPARATOR]}.join(COLUMN_SEPARATOR)
   end
 
   private
 
-  def create_rows
-    @game.board.cells.each_slice(3)
+  def rows
+    @game.board.row_content
+  end
+
+  def show_greeting
+    @console.display_greeting
+  end
+
+  def play_turn
+    @game.mark_position
+  end
+
+  def display_outcome
+    game_won?
+    game_drawn?
+  end
+
+  def game_won?
+    if @game.won?
+      game_won_message
+    end
+  end
+
+  def game_drawn?
+    if @game.drawn?
+      game_drawn_message
+    end
+  end
+
+  def game_won_message
+    message = "\nGame over! #{@game.previous_player.mark} is the winner!"
+    @console.show(message)
+  end
+
+  def game_drawn_message
+    message = "\nGame over! It's a draw"
+    @console.show(message)
   end
 
 end

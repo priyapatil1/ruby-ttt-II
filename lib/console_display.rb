@@ -4,31 +4,28 @@ class ConsoleDisplay
   COLUMN_SEPARATOR = " | "
 
   def initialize(game, console)
-    @game = game 
+    @game = game
     @console = console
   end
 
   def start
-    show_start_screen
+    show_board
+    show_prompt
     while !@game.over?
       play_turn
+      clear_screen
       show_board
     end
     display_outcome
   end
 
-  def show_start_screen
-    show_greeting
-    show_board
+  def show_prompt
+    @console.prompt
   end
 
   def show_board
     board = format_board
     @console.show(board)
-  end
-
-  def play_round
-    play_empty_position
   end
 
   def format_board
@@ -52,18 +49,9 @@ class ConsoleDisplay
   end
 
   def display_outcome
-    game_won?
-    game_drawn?
-  end
-
-  def game_won?
     if @game.won?
       game_won_message
-    end
-  end
-
-  def game_drawn?
-    if @game.drawn?
+    elsif @game.drawn?
       game_drawn_message
     end
   end
@@ -76,6 +64,10 @@ class ConsoleDisplay
   def game_drawn_message
     message = "\nGame over! It's a draw"
     @console.show(message)
+  end
+
+  def clear_screen
+    @console.clear_screen
   end
 
 end

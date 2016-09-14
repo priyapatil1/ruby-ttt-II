@@ -1,7 +1,6 @@
-require 'game_types'
+require 'game_option'
 require 'player'
 require 'computer_player'
-require 'game'
 
 class PlayerFactory
 
@@ -18,19 +17,41 @@ class PlayerFactory
   end
 
   def create_player_x(option)
-    if option == GameType::HvH || option == GameType::HvC
-      @player_x = Player.new("X", @console)
-    elsif option == GameType::CvH || option == GameType::CvC
-      @player_x = ComputerPlayer.new("X")
+    if option == GameOption::HvH || option == GameOption::HvC
+      human_x
+    elsif option == GameOption::CvH || option == GameOption::CvC
+      computer_x
+    else
+      human_x
     end
   end
 
   def create_player_o(option)
-    if option == GameType::CvC || option == GameType::HvC
-      @player_o = ComputerPlayer.new("O")
-    elsif option == GameType::CvH || option == GameType::HvH
-      @player_o = Player.new("O", @console)
+    if option == GameOption::CvC || option == GameOption::HvC
+      computer_o
+    elsif option == GameOption::CvH || option == GameOption::HvH
+      human_o
+    else
+      human_o
     end
+  end
+
+  private
+
+  def human_o
+    @player_o = Player.new("O", @console)
+  end
+
+  def human_x
+    @player_x = Player.new("X", @console)
+  end
+
+  def computer_o
+    @player_o = ComputerPlayer.new("O")
+  end
+
+  def computer_x
+    @player_x = ComputerPlayer.new("X")
   end
 
 end

@@ -73,6 +73,7 @@ describe Player do
 
   end
 
+
   private
 
   def moves(moves)

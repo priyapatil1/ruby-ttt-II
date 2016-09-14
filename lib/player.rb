@@ -4,7 +4,7 @@ class Player
   attr_reader :current_move
 
   def initialize(mark, console)
-    @mark = mark 
+    @mark = mark
     @console = console
   end
 

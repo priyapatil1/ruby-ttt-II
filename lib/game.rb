@@ -7,8 +7,8 @@ class Game
   attr_reader :player_x
   attr_reader :player_o
 
-  def initialize(console, player_x, player_o)
-    @board = Board.empty_board 
+  def initialize(player_x, player_o)
+    @board = Board.empty_board
     @player_x = player_x
     @player_o = player_o
   end

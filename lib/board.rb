@@ -27,8 +27,7 @@ class Board
   end
 
   def mark_empty_position(symbol, position)
-    cell_to_mark = @cells[position - 1]
-    if cell_to_mark != "X" && cell_to_mark != "O"
+    if empty_position?(position)
       @cells[position - 1] = symbol
     end
   end

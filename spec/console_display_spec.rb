@@ -5,7 +5,7 @@ require 'game'
 describe ConsoleDisplay do
   let(:output) {StringIO.new("")}
 
-  context 'display' do 
+  context 'display' do
 
     it 'formats an empty board' do
       display = create_console_display("")
@@ -18,42 +18,32 @@ describe ConsoleDisplay do
                                          " -------------\n"
     end
 
-    it 'displays an initial greeting and an empty board' do
-      display = create_console_display("")
-      display.show_start_screen
-      expect(output.string).to eq "\nWelcome to Tic Tac Toe!" +
-                                  "\nPlease choose a position from 1 - 9\n" +
-                                  "\n -------------\n"  +
-                                  " | 1 | 2 | 3 | \n" +
-                                  " -------------\n" +
-                                  " | 4 | 5 | 6 | \n" +
-                                  " -------------\n"  +
-                                  " | 7 | 8 | 9 | \n" +
-                                  " -------------\n"
-    end
-
-    it 'displays greeting and first move' do
+    it 'shows an initial prompt' do
       display = create_console_display("1\n2\n3\n4\n5\n\n6\n7\n8\n9")
       display.start
-      expect(output.string).to include"\nWelcome to Tic Tac Toe!" +
-                                      "\nPlease choose a position from 1 - 9\n" +
-                                      "\n -------------\n"  +
-                                      " | 1 | 2 | 3 | \n" +
-                                      " -------------\n" +
-                                      " | 4 | 5 | 6 | \n" +
-                                      " -------------\n"  +
-                                      " | 7 | 8 | 9 | \n" +
-                                      " -------------\n"
-      expect(output.string).to include"\n -------------\n"  +
-                                      " | X | 2 | 3 | \n" +
-                                      " -------------\n" +
-                                      " | 4 | 5 | 6 | \n" +
-                                      " -------------\n"  +
-                                      " | 7 | 8 | 9 | \n" +
-                                      " -------------\n"
+      expect(output.string).to include "Please choose a position from 1 - 9\n"
     end
 
-    it 'displays full board' do
+    it 'first move' do
+      display = create_console_display("1\n2\n3\n4\n5\n\n6\n7\n8\n9")
+      display.start
+      expect(output.string).to include"\n -------------\n"  +
+                                       " | 1 | 2 | 3 | \n" +
+                                       " -------------\n" +
+                                       " | 4 | 5 | 6 | \n" +
+                                       " -------------\n"  +
+                                       " | 7 | 8 | 9 | \n" +
+                                       " -------------\n"
+      expect(output.string).to include"\n -------------\n"  +
+                                       " | X | 2 | 3 | \n" +
+                                       " -------------\n" +
+                                       " | 4 | 5 | 6 | \n" +
+                                       " -------------\n"  +
+                                       " | 7 | 8 | 9 | \n" +
+                                       " -------------\n"
+    end
+
+    it 'full board' do
       display = create_console_display("1\n2\n3\n5\n4\n6\n8\n7\n9")
       display.start
       expect(output.string).to include"\n -------------\n"  +
@@ -113,16 +103,22 @@ describe ConsoleDisplay do
       expect(output.string).to include "Game over! It's a draw"
     end
 
+    it 'clears screen after every move' do 
+      display = create_console_display("1\n2\n3\n4\n6\n5\n8\n9\n7\n")
+      expect(display).to receive(:clear_screen).exactly(9).times
+      display.start
+    end
+
   end
 
   private
 
-  def create_console_display(move)
-    input = StringIO.new(move)
+  def create_console_display(moves)
+    input = StringIO.new(moves)
     console = Console.new(input, output)
     player_x = Player.new("X", console)
     player_o = Player.new("O", console)
-    game = Game.new(console, player_x, player_o)
+    game = Game.new(player_x, player_o)
     display = ConsoleDisplay.new(game, console)
   end
 

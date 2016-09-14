@@ -13,10 +13,14 @@ class Console
     @output.puts display
   end
 
-  def display_greeting
-    greeting = "\nWelcome to Tic Tac Toe!" +
-               "\nPlease choose a position from 1 - 9\n"
+  def show_greeting
+    greeting = "\nWelcome to Tic Tac Toe!"
     show(greeting)
+  end
+
+  def prompt
+    prompt = "\nPlease choose a position from 1 - 9\n"
+    show(prompt)
   end
 
   def position_taken_message
@@ -27,6 +31,18 @@ class Console
   def within_board_message
     message = "Please enter a valid move (1-9)\n"
     show(message)
+  end
+
+  def show_menu_options(options)
+    display = "\nPlease choose from the following options:\n\n"
+    options.each_with_index do |option, index|
+      display += (index + 1).to_s + ") " + option + "\n"
+    end
+    show(display)
+  end
+
+  def clear_screen
+     @output.puts "\e[H\e[2J" 
   end
 
 end

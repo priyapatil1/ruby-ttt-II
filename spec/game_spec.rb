@@ -10,7 +10,7 @@ describe Game do
     console = Console.new(input, output)
     player_x = Player.new("X", console)
     player_o = Player.new("O", console)
-    game = Game.new(console, player_x, player_o)
+    game = Game.new(player_x, player_o)
     expect(game.current_player.mark).to eq "X"
   end
 
@@ -43,7 +43,7 @@ describe Game do
     console = Console.new(input, output)
     player_x = Player.new("X", console)
     player_o = Player.new("O", console)
-    game = Game.new(console, player_x, player_o)
+    game = Game.new(player_x, player_o)
   end
 
   def play_rounds(number_of_rounds, game)

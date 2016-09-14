@@ -13,6 +13,7 @@ describe Menu do
     menu.show_initial_message
     expect(output.string).to include"\nWelcome to Tic Tac Toe!\n\n" +
                                     "Please choose from the following options:\n" +
+                                    "\nEntering anything other than 1 - 5 results in a Human vs Human game" +
                                     "\n1) Human vs Human\n" +
                                     "2) Human vs Computer\n" +
                                     "3) Computer vs Human\n" +

@@ -34,8 +34,8 @@ class Console
   end
 
   def show_menu_options(options)
-    display = "\nPlease choose from the following options:\n\n" +
-              "Entering anything other than 1 - #{options.size} results in a Human vs Human game\n"
+    display = "\nPlease choose from the following options:\n" +
+              "\nEntering anything other than 1 - #{options.size} results in a Human vs Human game\n"
     options.each_with_index do |option, index|
       display += (index + 1).to_s + ") " + option + "\n"
     end

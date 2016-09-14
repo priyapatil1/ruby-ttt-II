@@ -89,9 +89,9 @@ describe Board do
   context 'winning rows' do
 
     it 'first row win for X' do
-      x_first_row_win = Board.new(["X", "X", "X",
-                                   "X", "O", "O",
-                                   "O", "X", "O"])
+      x_first_row_win = Board.with_moves(["X", "X", "X",
+                                          "X", "O", "O",
+                                          "O", "X", "O"])
       expect(x_first_row_win.won?).to eq true
     end
 

@@ -30,8 +30,10 @@ class ConsoleDisplay
 
   def format_board
     display = ROW_SEPARATOR
-    display += COLUMN_SEPARATOR + rows.flat_map { |row|
-      [row, ROW_SEPARATOR]}.join(COLUMN_SEPARATOR)
+    display += COLUMN_SEPARATOR
+    display += rows.flat_map do |row|
+      [row, ROW_SEPARATOR]
+    end.join(COLUMN_SEPARATOR)
   end
 
   private

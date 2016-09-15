@@ -24,7 +24,7 @@ describe UnbeatablePlayer do
       board = Board.with_moves(["O", "X", "O",
                                 "O", "X", "X",
                                  7,   8,  "X"])
-      expect(unbeatable_player.move(board)).to eq 7
+      expect(unbeatable_player.set_current_move(board)).to eq 7
     end
 
     it 'win on middle row' do
@@ -32,7 +32,7 @@ describe UnbeatablePlayer do
       board = Board.with_moves(["O", "X", 3,
                                 "O",  5, "X",
                                 "X", "X", "O"])
-      expect(unbeatable_player.move(board)).to eq 5
+      expect(unbeatable_player.set_current_move(board)).to eq 5
     end
 
     it 'win on first row' do
@@ -40,7 +40,15 @@ describe UnbeatablePlayer do
       board = Board.with_moves(["O", "O", 3,
                                 "X", "X", 6,
                                 "X", "X","O"])
-      expect(unbeatable_player.move(board)).to eq 3
+      expect(unbeatable_player.set_current_move(board)).to eq 3
+    end
+
+    it 'win with four empty moves' do
+      unbeatable_player = UnbeatablePlayer.new("O")
+      board = Board.with_moves([1, "X","O",
+                                4,  5, "O",
+                               "X","X", 9 ])
+      expect(unbeatable_player.set_current_move(board)).to eq 9 
     end
 
   end
@@ -52,7 +60,7 @@ describe UnbeatablePlayer do
       board = Board.with_moves(["X", "O", 3,
                                  4,   5, "X",
                                 "X",  8, "O"])
-      expect(unbeatable_player.move(board)).to eq 4
+      expect(unbeatable_player.set_current_move(board)).to eq 4
     end
 
     it 'plays a blocking move on the second column' do
@@ -60,9 +68,16 @@ describe UnbeatablePlayer do
       board = Board.with_moves(["O", "X", "O",
                                  4,   5,  "X",
                                 "X", "X", "O"])
-      expect(unbeatable_player.move(board)).to eq 5
+      expect(unbeatable_player.set_current_move(board)).to eq 5
     end
 
+    it 'plays a blocking move on the third column' do
+      unbeatable_player = UnbeatablePlayer.new("O")
+      board = Board.with_moves(["O", "X", "X",
+                                 4,  "O",  6,
+                                "X", "O", "X"])
+      expect(unbeatable_player.set_current_move(board)).to eq 6 
+    end
   end
 
 end

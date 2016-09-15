@@ -1,6 +1,6 @@
 require 'game_option'
 require 'player'
-require 'computer_player'
+require 'unbeatable_player'
 
 class PlayerFactory
 
@@ -47,11 +47,11 @@ class PlayerFactory
   end
 
   def computer_o
-    @player_o = ComputerPlayer.new("O")
+    @player_o = UnbeatablePlayer.new("O")
   end
 
   def computer_x
-    @player_x = ComputerPlayer.new("X")
+    @player_x = UnbeatablePlayer.new("X")
   end
 
 end

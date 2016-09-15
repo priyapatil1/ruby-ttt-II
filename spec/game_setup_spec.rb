@@ -1,3 +1,4 @@
+require 'game'
 require 'game_setup'
 require 'console'
 
@@ -13,19 +14,19 @@ describe GameSetup do
   it 'sets up a HvC game when option 2 selected ' do
     game = create_game_setup(2)
     expect(game.player_x).to be_instance_of(Player)
-    expect(game.player_o).to be_instance_of(ComputerPlayer)
+    expect(game.player_o).to be_instance_of(UnbeatablePlayer)
   end
 
   it 'returns a CvH game when option 3 selected' do
     game = create_game_setup(3)
-    expect(game.player_x).to be_instance_of(ComputerPlayer)
+    expect(game.player_x).to be_instance_of(UnbeatablePlayer)
     expect(game.player_o).to be_instance_of(Player)
   end
 
   it 'returns a CvC game when option 4 selected' do
     game = create_game_setup(4)
-    expect(game.player_x).to be_instance_of(ComputerPlayer)
-    expect(game.player_o).to be_instance_of(ComputerPlayer)
+    expect(game.player_x).to be_instance_of(UnbeatablePlayer)
+    expect(game.player_o).to be_instance_of(UnbeatablePlayer)
   end
 
   it 'creates a HvH when no option given' do

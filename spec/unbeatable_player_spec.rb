@@ -45,4 +45,24 @@ describe UnbeatablePlayer do
 
   end
 
+  context 'blocking moves' do
+
+    it 'plays a blocking move on the first column' do
+      unbeatable_player = UnbeatablePlayer.new("O")
+      board = Board.with_moves(["X", "O", 3,
+                                 4,   5, "X",
+                                "X",  8, "O"])
+      expect(unbeatable_player.move(board)).to eq 4
+    end
+
+    it 'plays a blocking move on the second column' do
+      unbeatable_player = UnbeatablePlayer.new("O")
+      board = Board.with_moves(["O", "X", "O",
+                                 4,   5,  "X",
+                                "X", "X", "O"])
+      expect(unbeatable_player.move(board)).to eq 5
+    end
+
+  end
+
 end

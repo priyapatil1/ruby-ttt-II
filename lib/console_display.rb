@@ -38,16 +38,16 @@ class ConsoleDisplay
 
   private
 
+  def play_turn
+    @game.mark_position
+  end
+
   def rows
     @game.board.row_content
   end
 
   def show_greeting
     @console.display_greeting
-  end
-
-  def play_turn
-    @game.mark_position
   end
 
   def display_outcome

@@ -23,7 +23,7 @@ class Game
 
   def mark_position
     current_player.set_current_move(@board)
-    @board.mark_empty_position(current_player.mark, current_player.current_move)
+    @board = @board.mark_empty_position(current_player.mark, current_player.current_move)
   end
 
   def over?

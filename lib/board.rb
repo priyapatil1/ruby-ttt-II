@@ -19,7 +19,9 @@ class Board
 
   def full?
     board_positions = (1..@size).to_a
-    !board_positions.any? { |free_position| @cells.include? free_position }
+    !board_positions.any? do |free_position|
+      @cells.include? free_position
+    end
   end
 
   def empty?
@@ -28,7 +30,9 @@ class Board
 
   def mark_empty_position(symbol, position)
     if empty_position?(position)
-      @cells[position - 1] = symbol
+      new_cells = @cells.clone
+      new_cells[position - 1] = symbol
+      Board.new(new_cells)
     end
   end
 
@@ -60,6 +64,12 @@ class Board
   def first_empty_position
     @cells.index do |cell|
       cell != "X" && cell != "O"
+    end
+  end
+
+  def all_empty_positions
+    (0..@cells.size - 1).select do |position|
+      empty_position?(position + 1)
     end
   end
 

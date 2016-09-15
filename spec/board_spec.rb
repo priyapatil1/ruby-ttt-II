@@ -70,18 +70,18 @@ describe Board do
     let(:board) {Board.empty_board}
 
     it 'marks a symbol on the board' do
-      board.mark_empty_position("X", 1)
-      expect(board.empty?).to be false
+      marked = board.mark_empty_position("X", 1)
+      expect(marked.empty?).to be false
     end
 
     it 'marks an X at a given position' do
-      board.mark_empty_position("X", 1)
-      expect(board.symbol_at(1)).to eq "X"
+      marked_board = board.mark_empty_position("X", 1)
+      expect(marked_board.symbol_at(1)).to eq "X"
     end
 
     it 'marks an O at a given position' do
-      board.mark_empty_position("O", 2)
-      expect(board.symbol_at(2)).to eq "O"
+      marked_board = board.mark_empty_position("O", 2)
+      expect(marked_board.symbol_at(2)).to eq "O"
     end
 
   end

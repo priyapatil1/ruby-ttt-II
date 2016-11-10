@@ -43,7 +43,7 @@ class Console
   end
 
   def clear_screen
-     @output.puts "\e[H\e[2J" 
+     @output.puts "\e[H\e[2J"
   end
 
 end

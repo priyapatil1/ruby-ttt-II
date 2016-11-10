@@ -1,4 +1,4 @@
-class UnbeatablePlayer 
+class UnbeatablePlayer
 
   attr_reader :mark
   attr_reader :current_move
@@ -15,19 +15,24 @@ class UnbeatablePlayer
     current_best = best_move(- 1, - 100)
 
     if board.full? || board.won?
-      return best_move(- 1, - score(board)) 
+      return best_move(- 1, - score(board))
     end
 
     board.all_empty_positions.each do |position|
       new_board = board.mark_empty_position(mark, position + 1)
       new_score = negamax(new_board, switch(mark))
+      current_best = set_score(current_best, position, new_score)
+    end
+    best_move(current_best[:index], current_best[:score])
+  end
+
+  def set_score(current_best, position, new_score)
       temp_score = (- new_score[:score])
       if temp_score > current_best[:score]
         current_best[:index] = position + 1
         current_best[:score ] = temp_score
       end
-    end
-    best_move(current_best[:index], current_best[:score])
+      return current_best
   end
 
   def set_current_move(board)
@@ -35,6 +40,7 @@ class UnbeatablePlayer
   end
 
   private
+
 
   def switch(mark)
     mark == "X" ? "O" : "X"

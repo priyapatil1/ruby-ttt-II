@@ -14,4 +14,4 @@ The computer player is an unbeatable computer player that uses negamax to calcul
 
 In order to play clone the repo:  `git@github.com:priya121/TicTacToe.git`
 
-Then run the following command: `ruby bin/ttt.rb
+Then run the following command: `ruby bin/ttt.rb`
